@@ -7,8 +7,7 @@ def compression_algorithm(string):
         while True:
             is_out = False
             try:
-                sequence = ""
-                next_sequence = ""
+                sequence, next_sequence = "", ""
                 for num in range(sequence_len):
                     sequence += string[el_num+num]
                     next_sequence += string[el_num+num+sequence_len]
@@ -25,10 +24,8 @@ def compression_algorithm(string):
                 el_num += sequence_len
             elif sequence not in sequence_counter:
                 sequence_len += 1
-            elif sequence_counter[1] > 1:
-                break
             else:
-                sequence_len += 1
+                break
         if not is_out or len(sequence_counter) > 1:
             compressed_string += f" {sequence_counter[1]}{sequence_counter[0]}"
             if len(string) - (el_num + sequence_len) <= len(sequence_counter[0]):
@@ -56,6 +53,6 @@ def compress_string(string):
 
 
 if __name__ == '__main__':
-    # test = "AAAAAAAAAABABABCCDXDFSXDFSXDFSX"
-    test = "AAAAAAAAAABABABCCD"
+    test = "AAAAAAAAAABABABCCDXDFSXDFSXDFSX"
+    # test = "AAAAAAAAAABABABCCD"
     print(compress_string(test))
